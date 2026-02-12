@@ -5,10 +5,11 @@
 soong_namespace {
     imports: [
         "device/nokia/sdm660-common",
-        "hardware/qcom-caf/msm8998",
+        "hardware/qcom-caf/sdm660",
         "hardware/qcom-caf/wlan",
+        "vendor/qcom/opensource/commonsys/display",
         "vendor/qcom/opensource/dataservices",
-        "vendor/qcom/opensource/data-ipa-cfg-mgr-legacy-um",
+        "vendor/qcom/opensource/display",
     ],
 }
 
@@ -145,7 +146,6 @@ cc_prebuilt_library_shared {
         },
     },
     compile_multilib: "both",
-    check_elf_files: false,
     relative_install_path: "egl",
     prefer: true,
     soc_specific: true,
@@ -200,48 +200,6 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libQTapGLES",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/egl/libQTapGLES.so",
-            ],
-            shared_libs: [
-                "libcutils",
-                "libdl",
-                "libz",
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/egl/libQTapGLES.so",
-            ],
-            shared_libs: [
-                "libcutils",
-                "libdl",
-                "libz",
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    relative_install_path: "egl",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
     name: "libq3dtools_adreno",
     owner: "nokia",
     strip: {
@@ -278,14 +236,13 @@ cc_prebuilt_library_shared {
         },
     },
     compile_multilib: "both",
-    check_elf_files: false,
     relative_install_path: "egl",
     prefer: true,
     soc_specific: true,
 }
 
 cc_prebuilt_library_shared {
-    name: "vulkan.sdm660",
+    name: "libq3dtools_esx",
     owner: "nokia",
     strip: {
         none: true,
@@ -293,7 +250,49 @@ cc_prebuilt_library_shared {
     target: {
         android_arm: {
             srcs: [
-                "proprietary/vendor/lib/hw/vulkan.sdm660.so",
+                "proprietary/vendor/lib/egl/libq3dtools_esx.so",
+            ],
+            shared_libs: [
+                "libcutils",
+                "liblog",
+                "libz",
+                "libdl",
+                "libc++",
+                "libc",
+                "libm",
+            ],
+        },
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/egl/libq3dtools_esx.so",
+            ],
+            shared_libs: [
+                "libcutils",
+                "liblog",
+                "libz",
+                "libdl",
+                "libc++",
+                "libc",
+                "libm",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    relative_install_path: "egl",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "vulkan.adreno",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: [
+                "proprietary/vendor/lib/hw/vulkan.adreno.so",
             ],
             shared_libs: [
                 "libadreno_utils",
@@ -312,7 +311,7 @@ cc_prebuilt_library_shared {
         },
         android_arm64: {
             srcs: [
-                "proprietary/vendor/lib64/hw/vulkan.sdm660.so",
+                "proprietary/vendor/lib64/hw/vulkan.adreno.so",
             ],
             shared_libs: [
                 "libadreno_utils",
@@ -393,6 +392,7 @@ cc_prebuilt_library_shared {
                 "liblog",
                 "libgsl",
                 "libutils",
+                "libvndksupport",
                 "libc++",
                 "libc",
                 "libm",
@@ -408,6 +408,7 @@ cc_prebuilt_library_shared {
                 "liblog",
                 "libgsl",
                 "libutils",
+                "libvndksupport",
                 "libc++",
                 "libc",
                 "libm",
@@ -416,7 +417,6 @@ cc_prebuilt_library_shared {
         },
     },
     compile_multilib: "both",
-    check_elf_files: false,
     prefer: true,
     soc_specific: true,
 }
@@ -483,6 +483,7 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libcutils",
+                "libvndksupport",
                 "libc++",
                 "libc",
                 "libm",
@@ -495,6 +496,7 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "libcutils",
+                "libvndksupport",
                 "libc++",
                 "libc",
                 "libm",
@@ -551,7 +553,7 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libRSDriver_adreno",
+    name: "libVkLayer_q3dtools",
     owner: "nokia",
     strip: {
         none: true,
@@ -559,42 +561,26 @@ cc_prebuilt_library_shared {
     target: {
         android_arm: {
             srcs: [
-                "proprietary/vendor/lib/libRSDriver_adreno.so",
+                "proprietary/vendor/lib/libVkLayer_q3dtools.so",
             ],
             shared_libs: [
-                "libRS_internal",
-                "libRSCpuRef",
                 "liblog",
-                "libEGL",
-                "libGLESv1_CM",
-                "libGLESv2",
-                "libnativewindow",
-                "librs_adreno",
-                "libbcinfo",
-                "libdl",
-                "libc++",
+                "libz",
                 "libc",
                 "libm",
+                "libdl",
             ],
         },
         android_arm64: {
             srcs: [
-                "proprietary/vendor/lib64/libRSDriver_adreno.so",
+                "proprietary/vendor/lib64/libVkLayer_q3dtools.so",
             ],
             shared_libs: [
-                "libRS_internal",
-                "libRSCpuRef",
                 "liblog",
-                "libEGL",
-                "libGLESv1_CM",
-                "libGLESv2",
-                "libnativewindow",
-                "librs_adreno",
-                "libbcinfo",
-                "libdl",
-                "libc++",
+                "libz",
                 "libc",
                 "libm",
+                "libdl",
             ],
         },
     },
@@ -718,41 +704,6 @@ cc_prebuilt_library_shared {
                 "libcutils",
                 "libion",
                 "libc++",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libbccQTI",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libbccQTI.so",
-            ],
-            shared_libs: [
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libbccQTI.so",
-            ],
-            shared_libs: [
-                "libc++",
-                "libc",
                 "libm",
                 "libdl",
             ],
@@ -1175,7 +1126,6 @@ cc_prebuilt_library_shared {
         },
     },
     compile_multilib: "both",
-    check_elf_files: false,
     prefer: true,
     soc_specific: true,
 }
@@ -1592,6 +1542,49 @@ cc_prebuilt_library_shared {
                 "libutils",
                 "libbinder",
                 "libEGL",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libpvr",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: [
+                "proprietary/vendor/lib/libpvr.so",
+            ],
+            shared_libs: [
+                "libutils",
+                "libcutils",
+                "liblog",
+                "libQSEEComAPI",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libpvr.so",
+            ],
+            shared_libs: [
+                "libutils",
+                "libcutils",
+                "liblog",
+                "libQSEEComAPI",
                 "libc++",
                 "libc",
                 "libm",
@@ -2151,41 +2144,6 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libqseed3",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libqseed3.so",
-            ],
-            shared_libs: [
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libqseed3.so",
-            ],
-            shared_libs: [
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
     name: "libqsocket",
     owner: "nokia",
     strip: {
@@ -2251,214 +2209,6 @@ cc_prebuilt_library_shared {
                 "libcutils",
                 "libCB",
                 "libz",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    check_elf_files: false,
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "librs_adreno_sha1",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/librs_adreno_sha1.so",
-            ],
-            shared_libs: [
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/librs_adreno_sha1.so",
-            ],
-            shared_libs: [
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libsdm-color",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libsdm-color.so",
-            ],
-            shared_libs: [
-                "liblog",
-                "libcutils",
-                "libbinder",
-                "libutils",
-                "libsdmutils",
-                "libtinyxml2_1",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libsdm-color.so",
-            ],
-            shared_libs: [
-                "liblog",
-                "libcutils",
-                "libbinder",
-                "libutils",
-                "libsdmutils",
-                "libtinyxml2_1",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libsdm-diag",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libsdm-diag.so",
-            ],
-            shared_libs: [
-                "libdiag",
-                "libsdmutils",
-                "libbinder",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libsdm-diag.so",
-            ],
-            shared_libs: [
-                "libdiag",
-                "libsdmutils",
-                "libbinder",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libsdm-disp-vndapis",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libsdm-disp-vndapis.so",
-            ],
-            shared_libs: [
-                "libsdmutils",
-                "libqservice",
-                "libbinder",
-                "libcutils",
-                "libutils",
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libsdm-disp-vndapis.so",
-            ],
-            shared_libs: [
-                "libsdmutils",
-                "libqservice",
-                "libbinder",
-                "libcutils",
-                "libutils",
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libsdmextension",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libsdmextension.so",
-            ],
-            shared_libs: [
-                "libsdmutils",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libsdmextension.so",
-            ],
-            shared_libs: [
-                "libsdmutils",
                 "libc++",
                 "libc",
                 "libm",
@@ -2545,41 +2295,6 @@ cc_prebuilt_library_shared {
             ],
             shared_libs: [
                 "liblog",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "both",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libtinyxml2_1",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libtinyxml2_1.so",
-            ],
-            shared_libs: [
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-        android_arm64: {
-            srcs: [
-                "proprietary/vendor/lib64/libtinyxml2_1.so",
-            ],
-            shared_libs: [
                 "libc++",
                 "libc",
                 "libm",
@@ -2920,112 +2635,6 @@ cc_prebuilt_library_shared {
                 "proprietary/vendor/lib/libadpcmdec.so",
             ],
             shared_libs: [
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "32",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libgcs-calwrapper",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libgcs-calwrapper.so",
-            ],
-            shared_libs: [
-                "libgcs-osal",
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "32",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libgcs-ipc",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libgcs-ipc.so",
-            ],
-            shared_libs: [
-                "liblog",
-                "libexpat",
-                "libgcs-osal",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "32",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libgcs-osal",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libgcs-osal.so",
-            ],
-            shared_libs: [
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "32",
-    prefer: true,
-    soc_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libgcs",
-    owner: "nokia",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm: {
-            srcs: [
-                "proprietary/vendor/lib/libgcs.so",
-            ],
-            shared_libs: [
-                "libgcs-osal",
-                "libgcs-calwrapper",
-                "libgcs-ipc",
-                "liblog",
                 "libc++",
                 "libc",
                 "libm",
@@ -5969,6 +5578,30 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+    name: "libqseed3",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libqseed3.so",
+            ],
+            shared_libs: [
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
     name: "librcc",
     owner: "nokia",
     strip: {
@@ -6283,6 +5916,118 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+    name: "libsdm-color",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libsdm-color.so",
+            ],
+            shared_libs: [
+                "liblog",
+                "libcutils",
+                "libbinder",
+                "libutils",
+                "libsdmutils",
+                "libtinyxml2_1",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libsdm-diag",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libsdm-diag.so",
+            ],
+            shared_libs: [
+                "libdiag",
+                "libsdmutils",
+                "libbinder",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libsdm-disp-vndapis",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libsdm-disp-vndapis.so",
+            ],
+            shared_libs: [
+                "libsdmutils",
+                "libqservice",
+                "libbinder",
+                "libcutils",
+                "libutils",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libsdmextension",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libsdmextension.so",
+            ],
+            shared_libs: [
+                "libsdmutils",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
     name: "libsecureui",
     owner: "nokia",
     strip: {
@@ -6499,6 +6244,30 @@ cc_prebuilt_library_shared {
                 "libcutils",
                 "liblog",
                 "libc++",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libtinyxml2_1",
+    owner: "nokia",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "proprietary/vendor/lib64/libtinyxml2_1.so",
+            ],
+            shared_libs: [
+                "libc++",
+                "libc",
                 "libm",
                 "libdl",
             ],

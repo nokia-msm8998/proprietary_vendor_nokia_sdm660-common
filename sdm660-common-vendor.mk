@@ -127,19 +127,18 @@ PRODUCT_PACKAGES += \
     libEGL_adreno \
     libGLESv1_CM_adreno \
     libGLESv2_adreno \
-    libQTapGLES \
     libq3dtools_adreno \
-    vulkan.sdm660 \
+    libq3dtools_esx \
+    vulkan.adreno \
     libC2D2 \
     libCB \
     libOmxVpp \
     libOpenCL \
     libQSEEComAPI \
-    libRSDriver_adreno \
+    libVkLayer_q3dtools \
     libadreno_utils \
     libadsp_default_listener \
     libadsprpc \
-    libbccQTI \
     libc2d30_bltlib \
     libcdsp_default_listener \
     libcdsprpc \
@@ -160,6 +159,7 @@ PRODUCT_PACKAGES += \
     libmmsw_math \
     libmmsw_opencl \
     libmmsw_platform \
+    libpvr \
     libqcci_legacy \
     libqdi \
     libqdp \
@@ -172,17 +172,10 @@ PRODUCT_PACKAGES += \
     libqmi_encdec \
     libqmi_legacy \
     libqmiservices \
-    libqseed3 \
     libqsocket \
     librs_adreno \
-    librs_adreno_sha1 \
-    libsdm-color \
-    libsdm-diag \
-    libsdm-disp-vndapis \
-    libsdmextension \
     libsdsprpc \
     libsysmon_cdsp_skel \
-    libtinyxml2_1 \
     libvpphvx \
     libvpplibrary \
     vendor.qti.hardware.dsp@1.0 \
@@ -192,10 +185,6 @@ PRODUCT_PACKAGES += \
     libOmxVideoDSMode \
     libUBWC \
     libadpcmdec \
-    libgcs-calwrapper \
-    libgcs-ipc \
-    libgcs-osal \
-    libgcs \
     libmulawdec \
     libsmwrapper \
     libstreamparser \
@@ -292,6 +281,7 @@ PRODUCT_PACKAGES += \
     libqcrildatactl \
     libqisl \
     libqrtr \
+    libqseed3 \
     librcc \
     libril-qc-hal-qmi \
     libril-qc-logger \
@@ -301,6 +291,10 @@ PRODUCT_PACKAGES += \
     librilqmiservices \
     librmp \
     librpmb \
+    libsdm-color \
+    libsdm-diag \
+    libsdm-disp-vndapis \
+    libsdmextension \
     libsecureui \
     libsecureui_svcsock \
     libsettings \
@@ -309,6 +303,7 @@ PRODUCT_PACKAGES += \
     libthermalclient \
     libthermalfeature \
     libtime_genoff \
+    libtinyxml2_1 \
     libtzdrmgenprov \
     libwms \
     libwqe \

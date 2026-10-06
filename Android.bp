@@ -10645,6 +10645,7 @@ cc_prebuilt_library_shared {
             ],
         },
     },
+    allow_undefined_symbols: true,
     compile_multilib: "64",
     prefer: true,
     system_ext_specific: true,
